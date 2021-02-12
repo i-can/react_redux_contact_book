@@ -3,8 +3,17 @@ import Avatar from 'react-avatar'
 import {Link} from 'react-router-dom'
 
 
+
 const AllContactDetails = (props) => {
-    const {data} = props
+    const { data, deleteContactHandler } = props
+    
+    const deleteContact = (e) => {
+        e.preventDefault()
+        deleteContactHandler(data.id)
+    }
+
+
+
     return (
         <tr>
         <th>
@@ -27,11 +36,10 @@ const AllContactDetails = (props) => {
                 <Link  to ={`/contact/edit/${data.id}`}>
                 <span className="material-icons mr-2">edit</span>
                 </Link>
-                <Link to="#">
-                    <span className="material-icons  text-danger">remove_circle</span>
-                </Link>
-                
-                
+                <button className="material-icons  text-danger" onClick = {(e) =>deleteContact(e)}>
+                    remove_circle
+                </button>
+                   
             </td>
      </tr>
     );

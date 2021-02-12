@@ -3,13 +3,14 @@ import {addContacts} from './Action'
 import { connect } from 'react-redux'
 
 
+
+
 const mapStateToProps = (state) => ({
    
 })
 
 const mapDispatchToProps = (Dispatch) => ({
-    addContactHandler : contact => Dispatch(addContacts(contact))
-    
+    addContactHandler: contact => Dispatch(addContacts(contact)), 
 })
 
 

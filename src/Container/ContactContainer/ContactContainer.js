@@ -1,4 +1,5 @@
 import Contact from "../../Components/Contacts/Contact";
+import { deleteContact } from "../AddToContactContainer/Action";
 import { connect } from 'react-redux'
 
 
@@ -8,8 +9,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (Dispatch) => ({
-    
-    
+    deleteContactHandler : (id) => Dispatch(deleteContact(id))   
 })
 
 
