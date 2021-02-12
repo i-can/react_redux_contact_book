@@ -1,12 +1,9 @@
-
 import './Styles/App.scss'
 import Navbar from './Components/Elements/Navbar'
 import Contact from "./Container/ContactContainer/ContactContainer";
 import AddContact from './Container/AddToContactContainer/AddToContainer'
-import EditContact from './Components/Contacts/EditContact'
+import EditContact from "./Container/AddToContactContainer/EditToContainer";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
-
 
 function App() {
   return (

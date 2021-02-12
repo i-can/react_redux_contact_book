@@ -1,31 +1,41 @@
-import React, { useState } from 'react';
-
-
+import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+import {useHistory} from 'react-router-dom'
 
 
 const EditContact = (props) => {
+    const { editContactHandler, editContactData, updateContactHandler } = props
+    const history = useHistory()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [phone , setPhone] = useState('')
+    const [phone, setPhone] = useState('')
+    
+    const { id } = useParams()
+    useEffect(() => {
+        if (editContactData != null) {
+            setName(editContactData.name)
+            setEmail(editContactData.email)
+            setPhone(editContactData.phone)
+         }
 
-  /*   const createContact = (e) => {
+        editContactHandler(id)
+    }, [editContactData])
+    
+    const updateContact = (e) => {
         e.preventDefault()
-        const newContact = {
-            id:shortid.generate(),
-            name: name ,
-            email: email,
-            phone:phone
-        }
-        const { addContactHandler } = props
-        addContactHandler(newContact)
-        histry.push('/')
-    } */
+        const updateContact = Object.assign(editContactData,
+            { name: name, email: email, phone: phone })
+        updateContactHandler(updateContact)
+        history.push('/')
+      }
 
+
+  
     return (
         <div className="card border-0 shadow">
             <div className="card-header">Add your contact</div>
             <div className="card-body">
-                <form> 
+                <form  onSubmit ={(e)=>updateContact(e)}> 
                     <div className="form-group">
                         <input
                             type='text'
@@ -53,7 +63,7 @@ const EditContact = (props) => {
                             onChange = {(e) => setPhone(e.target.value)}
                         />
                     </div>
-                    <button className = "btn btn-primary"> Create Contact</button>
+                    <button className = "btn btn-warning">update Contact</button>
                 </form>
             </div>
         </div>

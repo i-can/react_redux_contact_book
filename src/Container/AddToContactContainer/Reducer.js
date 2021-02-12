@@ -1,4 +1,4 @@
-import { CREATE_CONTACT } from "./Constant";
+import { CREATE_CONTACT, EDIT_CONTACT,UDDATE_CONTACT,DELETE_CONTACT } from "./Constant";
 const initialState = {
   Contacts:[
     {
@@ -231,7 +231,8 @@ const initialState = {
         "bs": "target end-to-end models"
       }
     }
-  ]
+  ],
+ contact : null
 }
   
 
@@ -239,12 +240,36 @@ const initialState = {
     
    switch (action.type) {
      case CREATE_CONTACT:
-       console.log("reducer", action.payload)
        return {
          ...state,
          Contacts:[action.payload, ...state.Contacts ]
-
        }
+     
+     case EDIT_CONTACT:
+       let arr = state.Contacts.filter((Contacts) => Contacts.id == action.payload)
+       arr = arr.values()
+       for (let val of arr) {
+         arr = val
+       }
+       return {
+         ...state,
+         contact: arr
+       }
+
+     case UDDATE_CONTACT: 
+       return {
+         ...state,
+      Contacts: state.Contacts.map((Contacts) => Contacts.id == action.payload.id
+         ? action.payload : Contacts)
+      
+       }
+     
+     case DELETE_CONTACT:
+       return {
+         ...state,
+         Contacts: state.Contacts.filter((Contacts) => Contacts.id != action.payload),
+       }
+     
             default:
                 return state
                

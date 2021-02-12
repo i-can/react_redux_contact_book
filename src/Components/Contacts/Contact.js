@@ -3,7 +3,7 @@ import AllContactDetails from "./AllContactDetails";
 
 
 const Contact = (props) => {  
-  const { Data} = props
+  const { Data,deleteContactHandler } = props
     return (
       <div className = "table_shadow">
         <table className="table">
@@ -27,6 +27,7 @@ const Contact = (props) => {
                 <AllContactDetails
                   data={data}
                   key={data.id}
+                  deleteContactHandler= {deleteContactHandler}
                 />))}
           </tbody>
         </table>
